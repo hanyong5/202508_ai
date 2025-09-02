@@ -12,13 +12,14 @@
       }
       .card img {
         width: 100%;
+        border-radius: 10px;
       }
       .card .card-body {
         padding: 16px;
       }
       .contWrap {
         width: 1200px;
-        background: pink;
+        /* background: pink; */
         display: flex;
         justify-content: space-between;
         margin: auto;
@@ -39,26 +40,37 @@
           {
             imgUrl: 'cardImg01_01.png',
             title: '찾아가는 학교교육1',
+            stitle: '아동청소년대상',
           },
           {
             imgUrl: 'cardImg01_02.png',
             title: '찾아가는 학교교육2',
+            stitle: '아동청소년대상',
           },
           {
             imgUrl: 'cardImg01_03.png',
             title: '찾아가는 학교교육3',
+            stitle: '아동청소년대상',
           },
           {
             imgUrl: 'cardImg01_01.png',
             title: '찾아가는 학교교육1',
+            stitle: '아동청소년대상',
           },
           {
             imgUrl: 'cardImg01_02.png',
             title: '찾아가는 학교교육2',
+            stitle: '아동청소년대상',
           },
           {
             imgUrl: 'cardImg01_03.png',
             title: '찾아가는 학교교육3',
+            stitle: '아동청소년대상',
+          },
+          {
+            imgUrl: 'cardImg01_03.png',
+            title: '찾아가는 학교교육3',
+            stitle: '아동청소년대상',
           },
         ];
         for (var i = 0; i < vData.length; i++) {
@@ -66,6 +78,7 @@
           document.write("    <img src='img/" + vData[i].imgUrl + "' />");
           document.write("    <div class='card-body'>");
           document.write('        <h3>' + vData[i].title + '</h3>');
+          document.write('        <p>' + vData[i].stitle + '</p>');
           document.write('    </div>');
           document.write('</div>');
         }
