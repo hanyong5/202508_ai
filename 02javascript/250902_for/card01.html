@@ -36,6 +36,10 @@
         </div>
       </div> -->
       <script>
+        // view = [1,2,3]
+        // view = [{},{},{}]
+        // view = [{title:"test",view:"test1"},{},{}]  // {key1:value,key2:value,key3:value}
+
         var vData = [
           {
             imgUrl: 'cardImg01_01.png',
@@ -74,12 +78,21 @@
           },
         ];
         for (var i = 0; i < vData.length; i++) {
+          // document.write("<div class='card'>");
+          // document.write("    <img src='img/" + vData[i].imgUrl + "' />");
+          // document.write("    <div class='card-body'>");
+          // document.write('        <h3>' + vData[i].title + '</h3>');
+          // document.write('        <p>' + vData[i].stitle + '</p>');
+          // document.write('    </div>');
+          // document.write('</div>');
+
+          // document.write('문자' + 변수 + '문자' + 변수);
+
           document.write("<div class='card'>");
-          document.write("    <img src='img/" + vData[i].imgUrl + "' />");
-          document.write("    <div class='card-body'>");
-          document.write('        <h3>' + vData[i].title + '</h3>');
-          document.write('        <p>' + vData[i].stitle + '</p>');
-          document.write('    </div>');
+          document.write("  <img src='img/" + vData[i].imgUrl + "' />");
+          document.write("  <div class='card-body'>");
+          document.write('    <h3>' + vData[i].title + '</h3>');
+          document.write('  </div>');
           document.write('</div>');
         }
       </script>
