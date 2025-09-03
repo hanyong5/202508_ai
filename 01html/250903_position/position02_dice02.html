@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .diceWrap {
+        width: 100px;
+        height: 100px;
+        background: pink;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #fc4040;
+      }
+
+      .circle {
+        width: 15px;
+        height: 15px;
+        background: red;
+        border-radius: 8px;
+        position: absolute;
+      }
+      .circle.trans21,
+      .circle.trans31 {
+        transform: translate(20px, 20px);
+      }
+      .circle.trans22,
+      .circle.trans33 {
+        transform: translate(-20px, -20px);
+      }
+
+      .loc2 {
+        transform: translate(100px, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="diceWrap">
+      <div class="circle"></div>
+    </div>
+    <div class="diceWrap loc2">
+      <div class="circle trans21"></div>
+      <div class="circle trans22"></div>
+    </div>
+    <!-- <div class="diceWrap">
+      <div class="circle trans31"></div>
+      <div class="circle trans32"></div>
+      <div class="circle trans33"></div>
+    </div> -->
+  </body>
+</html>
