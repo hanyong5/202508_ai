@@ -9,6 +9,7 @@
       .container {
         width: 1200px;
         margin: 0 auto;
+        margin-bottom: 30px;
       }
 
       .cardWrap {
@@ -30,8 +31,29 @@
       .card {
         width: 350px;
         background: white;
-        box-shadow: 0 0 20px skyblue;
+        /* box-shadow: 0 0 20px #000000; */
+        /* box-shadow: 10px 10px 20px rgba(0,0,0,0.3); */
+        transition: 0.3s;
+        
+        cursor: pointer;
+
       }
+      /* .card:hover{
+        
+        transform:translate(-10px,-10px);
+        box-shadow: 15px 15px 40px rgba(0,0,0,0.5);
+      } */
+
+      .card img{
+        transition: 0.3s;
+      }
+      .card:hover img{
+        transform: translateY(-10px);
+        box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+      }
+
+
+
       .card img {
         width: 100%;
       }
@@ -72,5 +94,23 @@
         </div>
       </div>
     </div>
+    <style>
+        .box{
+            width: 100px;
+            text-align: center;
+            padding: 10px ;
+            cursor:pointer;
+            transition:0.3s;
+            position: relative;
+            left: 0;
+        }
+        .box:hover{
+            width: 110px;
+            background: blue;
+            color:white;
+            left: 10px;
+        }
+    </style>
+    <div class="box color2">button</div>
   </body>
 </html>
