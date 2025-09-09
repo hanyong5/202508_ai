@@ -25,9 +25,9 @@
 }
 
 /* visual  */
-.visual {
+/* .visual {
   height: 100vh;
-  /* min-height: 700px; */
+
   background-color: pink;
   background-image: url(../img/img01_01.jpg);
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   color: white;
-}
+} */
 
 /* content */
 
