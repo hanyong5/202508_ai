@@ -10,6 +10,13 @@
   font-weight: bold;
 }
 
+.online {
+  background-image: url(../img/visual02.png);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /** css responsive  **/
 @media (max-width: 1399px) {
 }
