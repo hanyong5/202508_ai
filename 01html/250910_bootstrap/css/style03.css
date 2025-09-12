@@ -17,6 +17,13 @@
   background-attachment: fixed;
 }
 
+.copymenu ul,
+.copymenu li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /** css responsive  **/
 @media (max-width: 1399px) {
 }
