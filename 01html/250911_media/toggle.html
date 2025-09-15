@@ -55,11 +55,13 @@
       .box .active {
         background: pink;
       }
+
+      /* *(0) < tag/1 < class/10 < id/100 < inline style(javascipt) < !important */
     </style>
   </head>
   <body>
     <!-- <div class="box active">1</div> -->
-    <div class="toggle" onclick="myButton()">
+    <div class="toggle" onclick="myButton()" id="han">
       <div class="bar1"></div>
       <div class="bar2"></div>
       <div class="bar3"></div>
@@ -69,6 +71,22 @@
     <script>
       function myButton() {
         document.getElementsByClassName('toggle')[0].classList.toggle('active');
+        // // document.getElementById('han').classList.toggle('active');
+
+        // const toggleElm = document.getElementById('han').classList;
+
+        // if (toggleElm.value == 'toggle') {
+        //   toggleElm.add('active');
+        //   document.getElementById('han').style.background = 'green'; // set
+        //   console.log(document.getElementById('han').style.background); // get
+
+        //   // document.getElementsByClassName('bar1')[0].style.background = 'red';
+        //   document.querySelector('.toggle div').style.background = 'red';
+        // } else {
+        //   toggleElm.remove('active');
+        //   // document.getElementsByClassName('bar1')[0].style.background = 'black';
+        //   document.querySelector('.toggle div').style.background = 'black';
+        // }
       }
     </script>
   </body>
