@@ -1,0 +1,34 @@
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+.sub {
+  display: none;
+}
+h1 {
+  text-align: center;
+}
+
+.navbar .menu {
+  display: flex;
+  background: skyblue;
+}
+.navbar .menu > li {
+  flex: 1 1 20%;
+  /* flex-grow: 1;
+  transition: 0.3s; */
+}
+/* .navbar .menu > li:hover {
+  flex-grow: 1.2;
+} */
+
+.navbar .menu > li a {
+  display: block;
+  /* background: pink; */
+  text-align: center;
+  padding: 10px 0;
+}
+.navbar .menu > li a:hover {
+  background: pink;
+}
