@@ -67,86 +67,38 @@
 
     <script src="menu.js"></script>
     <script>
+      //   const menuElm = document.querySelector('.menu');
+
+      //   let listView = '';
+      //   menu.forEach((item) => {
+      //     listView += `
+      //             <li>
+      //                 <a href="${item.url}">${item.menu}</a>
+      //             </li>
+      //         `;
+      //   });
+      //   menuElm.innerHTML = listView;
+    </script>
+    <script>
       const menuElm = document.querySelector('.menu');
 
       let listView = '';
-
-      // for (let i = 0; i < menu.length; i++) {
-      //   console.log(menu[i]);
-      //   console.log(menu[i].menu);
-      //   console.log(menu[i].url);
-      // }
-
-      // 배열.forEach(function(item,index){})
-
-      // menu.forEach(function (item, index) {
-      //   // console.log(item);
-      //   // console.log(menu[index]);
-      //   // console.log(item.menu);
-      //   console.log(menu[index].menu);
-      // });
-
       menu.forEach((item) => {
-        console.log(item.menu);
+        listView += `<li><a href="${item.url}">${item.menu}</a>`;
 
-        // 빽틱 `` 안에서 변수사용하려면 ${변수}
-        // depth1 menu만
-        // listView += `
-        //   <li>
-        //     <a href="${item.url}">${item.menu}</a>
-        //   </li>
-        //   `;
+        if (item.sub) {
+          listView += '<ul class="sub">';
 
-        //depth2 submenu
-        listView += `
-          <li>
-            <a href="${item.url}">${item.menu}</a>`;
-
-        if (item.sub == true) {
-          // listView += ``
-
-          console.log(item.submenu);
-          // item.submenu.forEach()
-
-          listView += "<ul class='sub'>";
-          item.submenu.forEach(function (subItem) {
-            listView += `
-                <li>
-                  <a href="${subItem.url}">${subItem.menu}</a>
-                </li>
-              `;
+          item.submenu.forEach((subItem) => {
+            listView += `<li><a href="${subItem.url}">${subItem.menu}</a></li>`;
           });
+
           listView += '</ul>';
         }
 
         listView += `</li>`;
       });
-
       menuElm.innerHTML = listView;
-    </script>
-
-    <script>
-      // listView += "<li>"
-      // listView += "    <a href='"+ item.url +"'>"+item.menu+"</a>"
-      // listView += "    <ul class='sub'>"
-      // listView += "      <li><a href='#'>sub01_01</a></li>"
-      // listView += "      <li><a href='#'>sub01_02</a></li>"
-      // listView += "      <li><a href='#'>sub01_03</a></li>"
-      // listView += "      <li><a href='#'>sub01_04</a></li>"
-      // listView += "    </ul>"
-      // listView += "  </li>"
-
-      // listView += `<li>
-      //       <a href="#">PRODUCT</a>
-      //       <ul class="sub">
-      //         <li><a href="#">sub02_01</a></li>
-      //         <li><a href="#">sub02_02</a></li>
-      //         <li><a href="#">sub02_03</a></li>
-      //         <li><a href="#">sub02_04</a></li>
-      //       </ul>
-      //     </li>
-      //     `
-      //     '' ``
     </script>
   </body>
 </html>

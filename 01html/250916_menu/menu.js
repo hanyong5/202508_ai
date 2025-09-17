@@ -31,8 +31,17 @@ const menu = [
   {
     menu: 'community',
     url: '#',
-    sub: false,
-    submenu: [],
+    sub: true,
+    submenu: [
+      {
+        menu: 'c01_01',
+        url: '#',
+      },
+      {
+        menu: 'c01_02',
+        url: '#',
+      },
+    ],
   },
   {
     menu: 'board',
