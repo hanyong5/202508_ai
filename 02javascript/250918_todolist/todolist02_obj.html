@@ -29,10 +29,21 @@
   </head>
   <body>
     <div class="container py-3">
+      <h3 class="text-center">오늘의 할 일 리스트</h3>
       <div class="row">
         <div class="col-md-6 offset-md-3 d-flex">
-          <input type="text" value="" class="inp form-control me-2" />
-          <button class="btn btn-primary" style="width: 100px">입력</button>
+          <input
+            type="text"
+            value=""
+            class="inp form-control me-2"
+            placeholder="오늘의 할 일을 입력하세요"
+          />
+          <button class="btn btn-primary inpBtn" style="width: 100px">
+            입력
+          </button>
+          <button class="btn btn-danger inpMoBtn d-none" style="width: 100px">
+            수정
+          </button>
         </div>
       </div>
       <div class="row px-3">
@@ -78,33 +89,99 @@
 
         */
 
-      let listView = [
-        {
-          todo: '자바',
-          done: false,
-        },
-        {
-          todo: '자바스크립트',
-          done: false,
-        },
-        {
-          todo: '도커',
-          done: true,
-        },
-      ];
+      //   let listView = [
+      //     {
+      //       todo: '자바1111',
+      //       done: false,
+      //     },
+      //     {
+      //       todo: '자바스크립트',
+      //       done: false,
+      //     },
+      //     {
+      //       todo: '도커',
+      //       done: true,
+      //     },
+      //     {
+      //       todo: 'mysql',
+      //       done: true,
+      //     },
+      //   ];
+
+      let listView = [];
 
       //dom
       const viewDataElem = document.querySelector('.viewList');
+      const inpElem = document.querySelector('.inp'); // value
+      const btnElem = document.querySelector('.inpBtn'); // event
+
+      //create
+      btnElem.addEventListener('click', function () {
+        if (inpElem.value != '') {
+          let value = { todo: inpElem.value, done: false }; //초기값
+          listView.push(value);
+          inpElem.value = '';
+          viewData();
+        } else {
+          alert('오늘의 할 일을 입력하세요');
+        }
+      });
 
       //function
       //read
       function viewData() {
+        let viewData = '';
         listView.forEach(function (item, i) {
-          console.log(item.todo);
+          viewData += `
+                <li class="d-flex justify-content-between py-3">
+                <div>${item.todo}</div>
+                <div class="d-flex gap-3">`;
+
+          //   if (item.done) {
+          //     viewData += `<i class="fa-solid fa-square-check " onclick="noDone(${i})"></i>`;
+          //   } else {
+          //     viewData += `<i class="fa-solid fa-square"  onclick="yesDone(${i})"></i>`;
+          //   }
+          if (item.done) {
+            viewData += `<i class="fa-solid fa-square-check " onclick="done(${i})"></i>`;
+          } else {
+            viewData += `<i class="fa-solid fa-square"  onclick="done(${i})"></i>`;
+          }
+
+          viewData += `
+                    
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash" onclick="del(${i})"></i>
+                </div>
+                </li>
+            `;
         });
+        viewDataElem.innerHTML = viewData;
       }
 
       viewData();
+
+      //delete
+      function del(index) {
+        alert(index);
+      }
+
+      //done
+      function yesDone(index) {
+        console.log(index);
+        listView[index].done = true;
+        viewData();
+      }
+
+      function noDone(index) {
+        listView[index].done = false;
+        viewData();
+      }
+
+      function done(index) {
+        listView[index].done = !listView[index].done;
+        viewData();
+      }
     </script>
   </body>
 </html>
