@@ -128,6 +128,11 @@
         if (inpElem.value != '') {
           let value = { todo: inpElem.value, done: false }; //초기값
           listView.push(value);
+
+          // localstorage update
+          let valueData = JSON.stringify(listView);
+          localStorage.setItem('todoData', valueData);
+
           inpElem.value = '';
           viewData();
         } else {
@@ -151,13 +156,18 @@
       //function
       //read
       function viewData() {
+        // localstorage
+        if (localStorage.length > 0) {
+          let lcalData = localStorage.getItem('todoData');
+          listView = JSON.parse(lcalData);
+        }
+
         let viewData = '';
         listView.forEach(function (item, i) {
           viewData += `
                 <li class="d-flex justify-content-between py-3">
                 <div>${item.todo}</div>
                 <div class="d-flex gap-3">`;
-
           //   if (item.done) {
           //     viewData += `<i class="fa-solid fa-square-check " onclick="noDone(${i})"></i>`;
           //   } else {
@@ -168,7 +178,6 @@
           } else {
             viewData += `<i class="fa-solid fa-square"  onclick="done(${i})"></i>`;
           }
-
           viewData += `
                     
                     <i class="fa-solid fa-pen" onclick="modi(${i},'${listView[i].todo}')"></i>
@@ -188,16 +197,16 @@
       }
 
       //done
-      function yesDone(index) {
-        console.log(index);
-        listView[index].done = true;
-        viewData();
-      }
+      // function yesDone(index) {
+      //   console.log(index);
+      //   listView[index].done = true;
+      //   viewData();
+      // }
 
-      function noDone(index) {
-        listView[index].done = false;
-        viewData();
-      }
+      // function noDone(index) {
+      //   listView[index].done = false;
+      //   viewData();
+      // }
 
       function done(index) {
         listView[index].done = !listView[index].done;
@@ -218,6 +227,7 @@
       - done:true 이면 글자, 글자를 text-decoration:line-through
       - done:false 원상복구
       - 수정시 취소번튼 추가
+      - done 체크, todo title 수정, todo 삭제, 전체삭제, localStorage 반영
       */
     </script>
   </body>
