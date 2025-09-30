@@ -41,7 +41,8 @@
 
       async function view(postId) {
         const viewData = await axios.get(
-          `https://jsonplaceholder.typicode.com/posts/${postId}`
+          `https://jsonplaceholder.typicode.com/posts/${postId}`,
+          {}
         );
 
         console.log(viewData.data);
