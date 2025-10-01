@@ -16,18 +16,23 @@
       async function kakaosearch(query) {
         try {
           // const res = await axios.get('',{})
-          const res = await axios.get(`https://dapi.kakao.com/v2/search/web`, {
-            headers: {
-              Authorization: 'KakaoAK fa457cdf8aad5e817710e5043ba0ece7',
-            },
-            params: {
-              query: query,
-            },
-          });
-          console.log(res);
+          const res = await axios.get(
+            `https://dapi.kakao.com/v2/search/web?query=${query}&size=50`,
+            // `https://dapi.kakao.com/v2/search/web`,
+            {
+              headers: {
+                Authorization: 'KakaoAK fa457cdf8aad5e817710e5043ba0ece7',
+              },
+              // params: {
+              //   query: query,
+              //   size: 50,
+              // },
+            }
+          );
+          console.log(res.data.documents);
         } catch (error) {}
       }
-      kakaosearch('손홍민');
+      kakaosearch('손흥민');
     </script>
   </body>
 </html>
