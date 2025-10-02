@@ -30,6 +30,7 @@
               type="text"
               class="form-control search"
               placeholder="검색어를 입력하세요"
+              value=""
             />
             <button type="submit" class="btn btn-primary" style="width: 100px">
               검색
@@ -100,7 +101,7 @@
         try {
           // const res = await axios.get('url',{ headers:{},params:{}})
           const { data } = await axios.get(
-            'https://dapi.kakao.com/v2/search/web',
+            'https://dapi.kakao.com/v2/search/blog',
             {
               headers: {
                 Authorization: 'KakaoAK fa457cdf8aad5e817710e5043ba0ece7',
@@ -128,7 +129,9 @@
                                   >${item.title}</a
                                 >
                               </h4>
-                              <p>${item.contents} </p>
+                              <div class="d-flex gap-3"><img src="${
+                                item.thumbnail
+                              }" class="rounded"><p>${item.contents}</p> </div>
                               <p class="d-flex justify-content-end small">
                                 <span>${item.datetime.split('T')[0]}</span>
                               </p>
