@@ -57,44 +57,69 @@
               </li>
             </ul>
           </div>
+
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link active" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
     <script>
       // document.getElementById("searchform").addEventListener("submit",function(){})
+
+      let page = 1;
+      let listCnt = 3;
+      let pagerCnt = 5;
+      let totalRecord = 0; // kakao meta
+      let totalPage = 0;
+      let query = '';
+
       document
         .getElementById('searchform')
-        .addEventListener('submit', async function (e) {
+        .addEventListener('submit', function (e) {
           e.preventDefault();
 
           const query = document.querySelector('.search').value.trim();
           if (!query) {
             alert('검색어를 입력하세요');
           }
-          console.log(query);
+          page = 1;
+          searchData(query, page);
+        });
 
-          try {
-            // const res = await axios.get('url',{ headers:{},params:{}})
-            const { data } = await axios.get(
-              'https://dapi.kakao.com/v2/search/web',
-              {
-                headers: {
-                  Authorization: 'KakaoAK fa457cdf8aad5e817710e5043ba0ece7',
-                },
-                params: {
-                  query: query,
-                  size: 3,
-                },
-              }
-            );
+      async function searchData(query, page) {
+        console.log(query, page);
+        try {
+          // const res = await axios.get('url',{ headers:{},params:{}})
+          const { data } = await axios.get(
+            'https://dapi.kakao.com/v2/search/web',
+            {
+              headers: {
+                Authorization: 'KakaoAK fa457cdf8aad5e817710e5043ba0ece7',
+              },
+              params: {
+                query: query,
+                page: page,
+                size: listCnt,
+              },
+            }
+          );
 
-            // console.log(res);
+          console.log(data);
 
-            // const data = res.data;
+          // const data = res.data;
 
-            let viewData = '';
-            data.documents.forEach(function (item) {
-              viewData += `
+          let viewData = '';
+          data.documents.forEach(function (item) {
+            viewData += `
                             <li>
                               <h4>
                                 <a href="${
@@ -109,12 +134,40 @@
                               </p>
                             </li>
                             `;
-            });
-            console.log(viewData);
+          });
+          // console.log(viewData);
 
-            document.querySelector('#results>ul').innerHTML = viewData;
-          } catch (error) {}
-        });
+          document.querySelector('#results>ul').innerHTML = viewData;
+
+          pagination(query, page);
+        } catch (error) {}
+      }
+
+      function pagination(query, page) {
+        const pageView = document.querySelector('.pagination');
+        pageView.innerHTML = '';
+
+        let startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
+        let endPage = startPage + pagerCnt - 1;
+        console.log(startPage, endPage);
+
+        let pageNum = '';
+        for (let i = startPage; i <= endPage; i++) {
+          // if (i == page) {
+          //   pageNum += "<li class='page-item active'>";
+          // } else {
+          //   pageNum += "<li class='page-item '>";
+          // }
+
+          pageNum += `<li class="page-item ${
+            i == page ? 'active' : ''
+          }"><a class="page-link" href="#" onclick="searchData('${query}',${i})">${i}</a></li>
+          `;
+        }
+        pageView.innerHTML = pageNum;
+      }
+
+      // searchData('손흥민', 3);
     </script>
   </body>
 </html>
