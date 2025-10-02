@@ -58,15 +58,15 @@
             </ul>
           </div>
 
-          <nav class="d-flex justify-content-center">
+          <nav class="d-flex justify-content-center align-items-center">
             <ul class="pagination">
-              <li class="page-item">
+              <!-- <li class="page-item">
                 <a class="page-link active" href="#">1</a>
               </li>
               <li class="page-item"><a class="page-link" href="#">2</a></li>
               <li class="page-item"><a class="page-link" href="#">3</a></li>
               <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li> -->
             </ul>
           </nav>
         </div>
@@ -78,9 +78,9 @@
       let page = 1;
       let listCnt = 3;
       let pagerCnt = 5;
-      let totalRecord = 0; // kakao meta
-      let totalPage = 0;
-      let query = '';
+      // let totalRecord = 0; // kakao meta
+      // let totalPage = 0;
+      // let query = '';
 
       document
         .getElementById('searchform')
@@ -138,20 +138,34 @@
           // console.log(viewData);
 
           document.querySelector('#results>ul').innerHTML = viewData;
+          let is_end = data.meta.is_end;
+          console.log('마지막-' + is_end);
 
-          pagination(query, page);
+          pagination(query, page, is_end);
         } catch (error) {}
       }
 
-      function pagination(query, page) {
+      function pagination(query, page, isEnd) {
         const pageView = document.querySelector('.pagination');
         pageView.innerHTML = '';
 
         let startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
         let endPage = startPage + pagerCnt - 1;
+
+        // if(endPage > totalPage){
+        //   endPage = totalPage
+        // }
+
         console.log(startPage, endPage);
 
         let pageNum = '';
+        //previous button
+        pageNum += `<li class="page-item ${
+          page == 1 ? 'disabled' : ''
+        }"><a class="page-link" href="#"
+        onclick="searchData('${query}',${page - 1})">
+          Previous</a></li>`;
+
         for (let i = startPage; i <= endPage; i++) {
           // if (i == page) {
           //   pageNum += "<li class='page-item active'>";
@@ -164,6 +178,12 @@
           }"><a class="page-link" href="#" onclick="searchData('${query}',${i})">${i}</a></li>
           `;
         }
+        //next button
+        pageNum += `<li class="page-item ${isEnd == true ? 'disabled' : ''}">
+          <a class="page-link" href="#" 
+          onclick="searchData('${query}',${page + 1})">
+          Next</a></li>`;
+
         pageView.innerHTML = pageNum;
       }
 
