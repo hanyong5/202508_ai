@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="get" id="form">
+      <input type="text" name="yourname" placeholder="이름을 입력하세요" />
+      <input type="text" name="year" placeholder="나이" />
+      <input type="text" name="content" />
+      <input type="hidden" name="book" value="mybook" />
+      <button type="submit" class="formBtn">글작성완료</button>
+    </form>
+
+    <!-- 
+    form문서에서 Enter를 누르면 화면이 새로고침됨
+    새로고침을 제거하기위하여 event.preventDefault()를 사용하여 새로고침을 방지
+    (form 문서의 기본기능을 제거, a tag의 화면이동이 기본기능)
+    
+    -->
+    <script>
+      // document.getElementById("form").addEventListener('submit',function(){})
+      document
+        .getElementById('form')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+          alert('글작성됩니다.');
+        });
+      document.querySelector('#form').addEventListener('keydown', function (e) {
+        // e.preventDefault();
+        console.log(event.key);
+        //   if (event.key == 'Enter') {
+        //     alert('enter 가 눌림');
+        //   }
+      });
+    </script>
+  </body>
+</html>
