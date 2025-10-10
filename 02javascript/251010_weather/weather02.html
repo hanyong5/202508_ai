@@ -10,18 +10,35 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <style>
+      body {
+        background-image: url('images/bg/view.png');
+        background-repeat: no-repeat;
+
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
     <div>
       이곳에 좌표값은
       <button class="posBtn">좌표값</button><br />
       현재위치 - <span class="pos">0,0</span><br />
+
+      <select class="locSelect">
+        <option value="선택,0,0">선택</option>
+        <option value="서울,37.5665,126.9780">서울</option>
+        <option value="부산,35.1796,129.0756">부산</option>
+      </select>
+      <br />
+
       <span class="location"></span>위치의 날씨 -
       <span class="weather"> 온도 : <span class="temp"></span> </span>
       <img
         src="https://openweathermap.org/img/wn/01d@2x.png"
         alt=""
         class="icon"
+        width="100"
       />
     </div>
     <script>
@@ -30,14 +47,36 @@
       //     console.log(position.coords.longitude);
       //   });
 
-      const API_KEY = 'c4f9f3106a1d99b87a12cf1000af68db';
+      const API_KEY = '';
       const posBtnElem = document.querySelector('.posBtn');
       const posElem = document.querySelector('.pos');
       const iconElem = document.querySelector('.icon');
+      const bgElem = document.querySelector('body');
+      const locElem = document.querySelector('.locSelect');
 
       posBtnElem.addEventListener('click', function () {
         // alert('클릭');
         navigator.geolocation.getCurrentPosition(success);
+      });
+
+      locElem.addEventListener('change', function () {
+        // console.log(locElem.value);
+        const value = locElem.value;
+        // 부산,35.1796,129.0756
+        // console.log(value.split(',')[0]);
+
+        const loc = value.split(',')[0];
+        const lat = value.split(',')[1];
+        const lon = value.split(',')[2];
+
+        // const [loc, lat, lon] = value.split(',');
+
+        console.log(loc);
+        if (loc !== '선택') {
+          getWeather(lat, lon);
+        } else {
+          navigator.geolocation.getCurrentPosition(success);
+        }
       });
 
       //   navigator.geolocation.getCurrentPosition(success);
@@ -83,6 +122,9 @@
           //     'https://openweathermap.org/img/wn/10d@2x.png'
           //   );
           iconElem.setAttribute('src', iconUrl);
+
+          let bgUrl = `background-image: url('images/bg/${icon}.png')`;
+          bgElem.setAttribute('style', bgUrl);
         } catch (error) {}
       }
     </script>
