@@ -27,8 +27,9 @@
       console.log(person.name);
       console.log(person['age']);
 
-      const { name, age } = { name: '이순신', age: 30 };
-      console.log(name);
+      const { data } = { data: '이순신', age: 30 };
+      console.log(data);
+      console.log(age);
 
       const user = {
         name: '영희',
@@ -36,6 +37,7 @@
       };
 
       printer(user);
+      // printer({ name: '영희', age: 20 });
       function printer({ name, age }) {
         console.log(name, age);
       }
