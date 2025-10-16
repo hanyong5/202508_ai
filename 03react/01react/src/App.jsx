@@ -25,8 +25,8 @@ function App() {
         {isLogin ? <p>로그인완료</p> : <p>로그인하세요</p>}
         {/* {city.map(function(){})}
         {city.map(()=>{})} */}
-        {city.map((item, index) => {
-          return <div key={index}>{item}</div>;
+        {city.map((item, i) => {
+          return <div key={i}>{item}</div>;
         })}
       </div>
     </>
