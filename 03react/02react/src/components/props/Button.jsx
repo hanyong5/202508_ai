@@ -12,7 +12,7 @@ function Button(props) {
         color: 'white',
       }}
     >
-      {props.title} {props.color}
+      {props.title}
     </div>
   );
 }
