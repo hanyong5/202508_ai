@@ -1,46 +1,56 @@
 import React, { useState } from 'react';
 import Button from './components/state/Button';
+import './App.css';
 
 function App() {
-  const test = 3;
-  const [count, setCount] = useState(1);
-  // const [allCity] = useState([{ city: '서울', cont: 'test' }]);
-  // console.log(count[0]);
-  // console.log(allCity[0]['city']);
-
-  function han() {
-    setCount(count + 1);
-  }
-
-  const han1 = function () {
-    setCount(count + 1);
-  };
-
-  const han2 = () => {
-    setCount(count + 1);
-  };
+  const [isModal, setIsModal] = useState(false);
 
   return (
-    <>
-      <div>
-        <h3>state</h3>
-        <button onClick={han2}>{count}</button>
-        {/* <button onClick={()=>{setCount(count+1)}}>{count}</button> */}
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          {count}
-        </button>
+    <div>
+      <h3>모달창만들기</h3>
+      {isModal ? (
+        <div className="vModal">
+          <div className="title">
+            <h3>모달창</h3>
+            <div
+              onClick={() => {
+                setIsModal(false);
+              }}
+            >
+              X
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia,
+            totam!
+          </p>
 
-        <hr />
-        {test}
-        <Button title="글쓰기"></Button>
-        <Button title="글수정" color="red"></Button>
-        <Button title="글리스트" color="blue"></Button>
+          {/* 닫기버튼 */}
+          <div
+            onClick={() => {
+              setIsModal(false);
+            }}
+          >
+            <Button title="닫기" color="blue"></Button>
+          </div>
+        </div>
+      ) : null}
+
+      <div
+        onClick={() => {
+          setIsModal(!isModal);
+        }}
+      >
+        <Button title="창띄우기"></Button>
       </div>
-    </>
+      {/* <div
+        onClick={() => {
+          setIsModal(false);
+        }}
+      >
+        <Button title="창닫기" color="red"></Button>
+      </div> */}
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './components/Button';
 import ViewComp from './components/ViewComp';
 import View01 from './components/View01';
+import MyComp from './components/MyComp';
 
 function App() {
   const city = ['서울', '대전', '인천', '춘천'];
@@ -20,6 +21,7 @@ function App() {
         return <View01 title={item}></View01>;
       })}
       <Han />
+      <MyComp></MyComp>
     </div>
   );
 }
