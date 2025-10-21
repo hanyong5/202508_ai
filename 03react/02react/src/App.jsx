@@ -1,26 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [count, setCount] = useState(0);
-  console.log('작동되었습니다.');
+  // api data 가지고 오기
+  // npm install axios -> npm i axios
+  // useEffect에 axios.get('') 사용 async..await
+  // api 경로 'https://jsonplaceholder.typicode.com/posts'
 
-  // useEffect(함수,[의존성배열])
+  const [postData, setPostData] = useState([]);
+
   useEffect(() => {
-    console.log('useEffect');
+    // async function fetchApi(){
+    //   const res = await fetch()
+    // }
+
+    // const fetch = async function(){
+    //   const rest = await fetch()
+    // }
+
+    const fetchApi = async () => {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      console.log(res.data);
+      setPostData(res.data);
+    };
+
+    fetchApi();
   }, []);
+
   return (
     <div>
-      App / {count}
-      <div>
-        {/* <button onClick={()=>{setCount(count+1)}}>클릭</button> */}
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          클릭
-        </button>
-      </div>
+      App
+      {postData &&
+        postData.map((item, i) => {
+          return (
+            <div>
+              {item.id}. {item.title}
+            </div>
+          );
+        })}
     </div>
   );
 }
