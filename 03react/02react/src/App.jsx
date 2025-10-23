@@ -1,43 +1,96 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [form, setForm] = useState({
-    name: '홍길동',
-    email: 'test@test.com',
-    id: '',
-    agree: false,
+  const [formData, setFormData] = useState({
+    name: '',
+    userid: '',
+    useremail: '',
   });
-  const eventHandler = (e) => {
-    console.log(e.target);
-    const { name, value, type, checked } = e.target;
-    console.log(name, value);
-    setForm({ ...form, [name]: type == 'checkbox' ? checked : value });
 
-    // setForm( {name: '홍길동', email: 'test@test.com',["name"]:e.target.value})
+  const eventHandler = (e) => {
+    const { name, type, value, checked } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  // const arr = ['부산','서울']
-  // arr[1]
+  const submitHandler = (e) => {
+    // alert('회원가입완료');
+    e.preventDefault();
 
-  // const han = {name:'test',content:'test1'}
-  // han.name
-  // han['name']
+    if (!formData.name.trim()) {
+      alert('이름을 입력하세요');
+    }
 
+    if (!formData.userid.trim()) {
+      alert('아이디를 입력하세요');
+    } else if (formData.userid.length < 4) {
+      alert('아이디는 4자이상 입력하세요');
+    }
+
+    if (!formData.useremail.trim()) {
+      alert('이메일을 입력하세요');
+    }
+  };
   return (
     <div>
-      <h3>input</h3>
-      <p>
-        {form.name} / {form.email} / {form.id} /
-        {form.agree && <span>체크</span>}
-      </p>
-      <input type="text" name="name" onChange={eventHandler} />
-      <br />
-      <input type="text" name="email" onChange={eventHandler} />
-      <br />
-      <input type="text" name="id" onChange={eventHandler} />
-      <br />
-      <input type="checkbox" name="agree" onChange={eventHandler} />
-      <br />
+      <div className="container">
+        <h3>회원가입</h3>
+        <form onSubmit={submitHandler}>
+          <div className="mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+            <label
+              htmlFor="name"
+              className="form-label"
+              style={{ width: '100px' }}
+            >
+              이름 {formData.name}
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              placeholder="이름을 입력하세요"
+              onChange={eventHandler}
+            />
+          </div>
+          <div className="mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+            <label
+              htmlFor="userId"
+              className="form-label"
+              style={{ width: '100px' }}
+            >
+              아이디
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="userId"
+              name="userid"
+              placeholder="아이디를 입력하세요"
+              onChange={eventHandler}
+            />
+          </div>
+          <div className="mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+            <label
+              htmlFor="userEmail"
+              className="form-label"
+              style={{ width: '100px' }}
+            >
+              이메일
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="userEmail"
+              name="useremail"
+              placeholder="이메일을 입력하세요"
+              onChange={eventHandler}
+            />
+          </div>
+          <div className="text-end">
+            <button className="btn btn-primary">회원가입완료</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
