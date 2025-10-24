@@ -61,6 +61,7 @@ function App() {
           // return <li onClick={clickFn}>{item.title}</li>;
           return (
             <li
+              key={i}
               onClick={() => {
                 clickFn(i);
               }}
