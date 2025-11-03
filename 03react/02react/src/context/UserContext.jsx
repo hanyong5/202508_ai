@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const UserContext = createContext();
 
@@ -9,5 +10,17 @@ export const UserContext = createContext();
 // export default UserContext;
 
 export const UserProvider = ({ children }) => {
-  return <UserContext.Provider value="홍길동">{children}</UserContext.Provider>;
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        'https://jsonplaceholder.typicode.com/users/1'
+      );
+      setUser(data);
+      //   console.log(data);
+    };
+    fetchData();
+  }, []);
+
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
