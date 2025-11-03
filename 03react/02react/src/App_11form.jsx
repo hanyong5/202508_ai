@@ -11,7 +11,26 @@ function App() {
 
   const eventHandler = (e) => {
     const { name, type, value, checked } = e.target;
-    setFormData({ ...formData, [name]: value });
+    console.log(e.target);
+
+    // e.target <input type="text" name="userid" value="hanyong5">
+    // e.target {type:"text",name="userid",value="hanyong5"}
+    // const {name,value} = {type:"text",name="userid",value="hanyong"}
+
+    // setFormData({ ...formData, [name]: value });
+    //#1
+    // setFormData((prev)=>{
+    //  return {
+    //   ...prev,[name]:value
+    //  }
+    // })
+
+    //#2
+    // setFormData((prev)=>{
+    //   return {}
+    // })
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const validate = () => {
@@ -108,6 +127,7 @@ function App() {
                 onChange={eventHandler}
               />
             </div>
+            <div>input name=userid value=글자 -> eventHandler</div>
             {/* <div style={{ color: 'red' }}>아이디를 입력하세요</div> */}
             {errors.userid && (
               <div style={{ color: 'red' }}>{errors.userid}</div>
