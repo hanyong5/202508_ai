@@ -4,14 +4,12 @@ import { PostProvider } from './context/PostContext';
 
 function App() {
   return (
-    <>
-      <PostProvider>
-        <div>
-          <h3>context api</h3>
-        </div>
-        <ParentComp />
-      </PostProvider>
-    </>
+    <PostProvider>
+      <div>
+        <h3>context api</h3>
+      </div>
+      <ParentComp />
+    </PostProvider>
   );
 }
 
