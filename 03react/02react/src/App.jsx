@@ -1,25 +1,17 @@
-import React, { createContext } from 'react';
-
-import ParentComp from './components/context/ParentComp';
-// import { UserProvider } from './context/UserContext';
-
-// const UserContext = createContext();
-
-// function App() {
-//   return (
-//     <UserContext.Provider value="홍길동">
-//       <ParentComp />
-//     </UserContext.Provider>
-//   );
-// }
-
-import { UserProvider } from './context/UserContext';
+import React from 'react';
+import ParentComp from './components/context1/ParentComp';
+import { PostProvider } from './context/PostContext';
 
 function App() {
   return (
-    <UserProvider>
-      <ParentComp />
-    </UserProvider>
+    <>
+      <PostProvider>
+        <div>
+          <h3>context api</h3>
+        </div>
+        <ParentComp />
+      </PostProvider>
+    </>
   );
 }
 
