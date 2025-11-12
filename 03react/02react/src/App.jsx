@@ -1,15 +1,56 @@
-import React from 'react';
-import ParentComp from './components/context1/ParentComp';
-import { PostProvider } from './context/PostContext';
+import React, { useState } from 'react';
 
 function App() {
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState('이미지 파일업로드');
+  const [text, setText] = useState('');
+
+  const fileChangeHandler = (e) => {
+    console.log(e.target.files[0]);
+    const imageFile = e.target.files[0];
+    setFileName(imageFile.name);
+    setFile(imageFile);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('test', text);
+
+    console.log(formData);
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+    // alert('전송');
+
+    // axios.post("경로",formData)
+  };
+
   return (
-    <PostProvider>
-      <div>
-        <h3>context api</h3>
-      </div>
-      <ParentComp />
-    </PostProvider>
+    <div>
+      <h3>파일업로드</h3>
+
+      <form onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="file">{fileName}</label>
+          <br />
+          <input type="file" id="file" onChange={fileChangeHandler} />
+        </div>
+        <div>
+          <label htmlFor="testinput">name</label>
+          <input
+            type="text"
+            id="testinput"
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          />
+        </div>
+        <button type="submit">전송</button>
+      </form>
+    </div>
   );
 }
 
