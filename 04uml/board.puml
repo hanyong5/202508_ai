@@ -1,0 +1,27 @@
+@startuml
+
+class Member {
+    Long id
+    String name
+    String email
+    LocalDateTime createdAt
+}
+
+class Board {
+    Long id
+    String subject
+    String content
+    LocalDateTime createdAt
+}
+
+class Comment {
+    Long id
+    String comment
+    LocalDateTime createdAt
+}
+
+Member "1" --> "many" Board : writes
+Member "1" --> "many" Comment : writes
+Board  "1" --> "many" Comment : has
+
+@enduml
