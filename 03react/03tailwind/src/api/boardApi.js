@@ -12,3 +12,8 @@ export const getBoard = async (page, size) => {
   });
   return data;
 };
+
+export const createBoard = async (boardFormData) => {
+  const { data } = await api.post('/board', boardFormData);
+  return data;
+};

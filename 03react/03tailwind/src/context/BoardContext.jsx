@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { getBoard } from '../api/boardApi';
+import { createBoard, getBoard } from '../api/boardApi';
 
 const BoardContext = createContext();
 
@@ -18,10 +18,16 @@ export const BoardProvider = ({ children }) => {
     console.log(data);
   };
 
+  const addBoard = async (boardFormData) => {
+    await createBoard(boardFormData);
+    await fetchData(0, 2); //등록후 새로고침
+  };
+
   const value = {
     boardData,
-    fetchData,
     totalCount,
+    fetchData,
+    addBoard,
   };
   return (
     <BoardContext.Provider value={value}>{children}</BoardContext.Provider>
