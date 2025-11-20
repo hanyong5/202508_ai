@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { getBaord } from './api/boardApi';
 
 function App() {
   const [boardData, setBoardData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getBaord();
+      const { data } = await axios.get('http://localhost:8080/api/board');
+      console.log(data);
       setBoardData(data);
     };
     fetchData();
