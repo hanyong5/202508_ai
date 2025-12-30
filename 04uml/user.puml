@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam dpi 180
+
+' 블록 스타일 대신 개별 속성으로 지정
+skinparam usecaseBackgroundColor #F9F9F9
+skinparam usecaseBorderColor #888
+skinparam actorBackgroundColor #FFFFFF
+skinparam actorBorderColor #555
+' 한글 폰트 깨질 때만 아래 주석 해제 (서버에 폰트 없으면 무시됨)
+' skinparam defaultFontName "Malgun Gothic"
+
+' actor "라벨" as 별칭  (구문을 이 순서로 쓰면 안전)
+actor USER as "일반 사용자(User)"
+actor HADMIN as "병원 관리자(Hospital Admin)"
+
+rectangle "병원 예약 및 리뷰 시스템" {
+  ' (텍스트) as 별칭 대신 usecase 선언식 사용 (구버전 호환↑)
+  usecase UC01 as "회원가입"
+  usecase UC02 as "로그인"
+  usecase UC04 as "병원 검색"
+  usecase UC07 as "병원 예약"
+  usecase UC11 as "리뷰 작성"
+  usecase UC06 as "병원 정보 등록/수정"
+}
+
+USER -- UC01
+USER -- UC02
+USER -- UC04
+USER -- UC07
+USER -- UC11
+
+HADMIN -- UC06
+
+UC02 .> UC07 : <<extend>>
+@enduml
