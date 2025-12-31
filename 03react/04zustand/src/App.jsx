@@ -1,12 +1,17 @@
 import React from 'react';
 import HomeComp from './page/HomeComp';
+import { Route, Routes } from 'react-router-dom';
+import RootLayout from './layouts/RootLayout';
 
 function App() {
   return (
-    <div>
-      <h3>test</h3>
-      <HomeComp />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<HomeComp />}></Route>
+        </Route>
+      </Routes>
+    </>
   );
 }
 
